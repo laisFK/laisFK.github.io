@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friederike Lais Krüger</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --wine:       #7B1D2E;
+    --wine-mid:   #8F2235;
+    --wine-soft:  #A0283D;
+    --wine-tint:  #FDF0F2;
+    --bg:         #ffffff;
+    --surface:    #F8F8F8;
+    --border:     rgba(0,0,0,0.08);
+    --border-mid: rgba(0,0,0,0.15);
+    --text-primary:   #0D0D0D;
+    --text-secondary: #3A3A3A;
+    --text-muted:     #888888;
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans:  'Inter', system-ui, sans-serif;
+  }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text-primary); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  .hero { padding: 6rem 2.5rem 4rem; max-width: 860px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--wine-soft); margin-bottom: 1.25rem; font-weight: 500; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 400; line-height: 1.15; color: var(--text-primary); margin-bottom: 1.5rem; }
+  .hero-bio { font-size: 1rem; color: var(--text-secondary); max-width: 640px; line-height: 1.85; margin-bottom: 2.5rem; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { font-size: 0.72rem; font-weight: 500; padding: 5px 13px; border-radius: 100px; border: 1px solid var(--border-mid); color: var(--text-secondary); background: var(--surface); }
+  .tag.wine { border-color: var(--wine-mid); color: var(--wine-soft); background: var(--wine-tint); }
+
+  section { max-width: 860px; margin: 0 auto; padding: 4rem 2.5rem; }
+  .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .section-header h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; color: var(--text-primary); }
+  .section-count { font-size: 0.78rem; color: var(--text-muted); }
+
+  .projects { display: flex; flex-direction: column; }
+  .project-card { display: grid; grid-template-columns: 110px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
+  .project-card:last-child { border-bottom: none; }
+  .project-year { font-family: var(--serif); font-size: 0.88rem; color: var(--text-muted); padding-top: 3px; font-style: italic; }
+  .project-venue { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--wine-soft); font-weight: 500; margin-bottom: 0.4rem; }
+  .project-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--text-primary); margin-bottom: 0.6rem; line-height: 1.4; }
+  .project-title a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border-mid); transition: border-color 0.2s, color 0.2s; }
+  .project-title a:hover { color: var(--wine-soft); border-color: var(--wine-soft); }
+  .project-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .ptag { font-size: 0.68rem; padding: 2px 9px; border-radius: 100px; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .about-block h3 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; }
+  .about-block p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+  .about-block p + p { margin-top: 0.75rem; }
+  .about-block ul { list-style: none; padding: 0; }
+  .about-block li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.35rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+  .about-block li:last-child { border-bottom: none; }
+  .about-block li span { color: var(--text-muted); font-size: 0.78rem; font-style: italic; font-family: var(--serif); }
+
+  .contact-strip { border-top: 1px solid var(--border); background: var(--surface); padding: 3rem 2.5rem; text-align: center; }
+  .contact-strip h3 { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+  .contact-strip a { color: var(--wine-soft); text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid var(--wine-tint); transition: border-color 0.2s; }
+  .contact-strip a:hover { border-color: var(--wine-soft); }
+
+  footer { text-align: center; padding: 1.25rem; font-size: 0.72rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--bg); }
+
+  @media (max-width: 600px) {
+    .hero, section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .project-card { grid-template-columns: 1fr; gap: 0.4rem; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-eyebrow">PhD Candidate · Uppsala University · Marie Skłodowska-Curie Fellow</p>
+  <h1>Friederike Lais Krüger</h1>
+  <p class="hero-bio">
+    I am a theoretical and computational physicist with a background in fundamental physics, covering particle physics, QFT, general relativity, cosmology, and atomic and molecular physics. In my PhD, I work on applying machine learning to reconstruct 3D protein structure from X-ray laser imaging data and on computational methods for structural biology and cancer radiation therapy.
+  </p>
+  <div class="hero-tags">
+    <span class="tag wine">Structural Biology · ML</span>
+    <span class="tag wine">XFEL · Single Particle Imaging</span>
+    <span class="tag">Marie Skłodowska-Curie Fellow</span>
+    <span class="tag">Visiting Researcher · Stanford / SLAC</span>
+    <span class="tag">SPIDOCs European Research Network</span>
+  </div>
+</div>
+
+<section id="research">
+  <div class="section-header">
+    <h2>Physics &amp; ML</h2>
+    <span class="section-count">Selected projects</span>
+  </div>
+  <div class="projects">
+
+    <div class="project-card">
+      <div class="project-year">2026</div>
+      <div class="project-body">
+        <div class="project-venue">Publication · Physics in Medicine &amp; Biology (IOP)</div>
+        <div class="project-title"><a href="https://doi.org/10.1088/1361-6560/ae35c4" target="_blank">How chain length influences x-ray-induced fragmentation of iodine-doped DNA oligomers</a></div>
+        <p class="project-desc">Experimental and computational study of how iodine-doped DNA oligonucleotides of 2–5 bases fragment under synchrotron x-ray irradiation near the iodine L-edge. O.H. Hafiani, <strong>F. Krüger</strong> et al., Physics in Medicine and Biology, IOP, 2026.</p>
+        <div class="project-tags">
+          <span class="ptag">radiation therapy</span>
+          <span class="ptag">DNA damage</span>
+          <span class="ptag">radiosensitiser</span>
+          <span class="ptag">X-ray physics</span>
+          <span class="ptag">DFT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-year">2026</div>
+      <div class="project-body">
+        <div class="project-venue">Course project · Quantum Machine Learning · Uppsala University</div>
+        <div class="project-title">Quantum ML for molecular geometry reconstruction from Coulomb Explosion Imaging</div>
+        <p class="project-desc">Tested IQP-kernel quantum kernel ridge regression and IsingZZ quantum circuit adapters within the MOLEXA backbone; evaluated across complete and missing-fragment CEI scenarios, using pairwise Coulomb cross-terms and global momentum conservation as structural priors.</p>
+        <div class="project-tags">
+          <span class="ptag">quantum machine learning</span>
+          <span class="ptag">PennyLane</span>
+          <span class="ptag">Coulomb explosion imaging</span>
+          <span class="ptag">variational circuits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-year">2018</div>
+      <div class="project-body">
+        <div class="project-venue">Master's thesis · Universitat de Barcelona · Supervisor: Josep Llosa</div>
+        <div class="project-title"><a href="docs/thesis-ricci-collineations.pdf" target="_blank">Ricci Collineations of plane-symmetric space-times</a></div>
+        <p class="project-desc">Classified symmetry vector fields of the Ricci curvature tensor for plane-symmetric space-times across different degeneracy ranks, using Lie derivative methods and Hamiltonian mechanics.</p>
+        <div class="project-tags">
+          <span class="ptag">general relativity</span>
+          <span class="ptag">differential geometry</span>
+          <span class="ptag">symmetry groups</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="ai-society">
+  <div class="section-header">
+    <h2>AI &amp; Society</h2>
+  </div>
+  <div class="projects">
+
+    <div class="project-card">
+      <div class="project-year">2022</div>
+      <div class="project-body">
+        <div class="project-venue">Master's thesis · CIAI, Universitat Pompeu Fabra · Supervisor: Jose Luis Martí</div>
+        <div class="project-title"><a href="docs/thesis-ai-liberal-democracies.pdf" target="_blank">Should AI be incorporated into the governing of liberal democracies?</a></div>
+        <p class="project-desc">Argues that AI as an extension of collective intelligence can epistemically strengthen democratic decision-making, but only if built with human-centred, democratic values. Otherwise, governance power shifts to those controlling it. Examines questions of legitimacy, accountability, and epistemic autonomy.</p>
+        <div class="project-tags">
+          <span class="ptag">AI governance</span>
+          <span class="ptag">political philosophy</span>
+          <span class="ptag">democratic theory</span>
+          <span class="ptag">collective intelligence</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header">
+    <h2>About</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-block">
+      <h3>Education &amp; affiliations</h3>
+      <ul>
+        <li>PhD candidate, Theoretical Biophysics · Uppsala University <span>Apr 2024 –</span></li>
+        <li>Marie Skłodowska-Curie Fellow (MSCA) <span>Aug 2024 –</span></li>
+        <li>Visiting researcher · Stanford University / SLAC <span>Feb – Apr 2026</span></li>
+        <li>SPIDOCs European research network <span>2022 –</span></li>
+        <li>MSc Political Philosophy · Universitat Pompeu Fabra <span>2020 – 2022</span></li>
+        <li>MSc Astrophysics, Particle Physics &amp; Cosmology · Universitat de Barcelona <span>2017 – 2018</span></li>
+        <li>BSc Physics · Freie Universität Berlin <span>2012 – 2016</span></li>
+      </ul>
+    </div>
+    <div class="about-block">
+      <h3>Fellowships &amp; honours</h3>
+      <ul>
+        <li>Marie Skłodowska-Curie Fellow (MSCA) · European Commission <span>2024 –</span></li>
+        <li>Fellow · Friedrich Naumann Foundation for Freedom <span>2012 – 2018</span></li>
+        <li>DAAD Scholarships ×3 <span>2011 – 2017</span></li>
+        <li>CERN Scholarship ×2 <span>2011 – 2017</span></li>
+        <li>ERASMUS ×3 <span>2011 – 2017</span></li>
+      </ul>
+      <h3 style="margin-top:1.5rem;">Languages</h3>
+      <p>German (native) · English (C2) · Spanish (B2) · Portuguese (B1) · Swedish (A2)</p>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip" id="contact">
+  <h3>Contact</h3>
+  <p style="margin-top:0.5rem;"><a href="mailto:friederike.krueger@physics.uu.se">friederike.krueger@physics.uu.se</a></p>
+</div>
+
+<footer>© 2026 Friederike Lais Krüger</footer>
+
+</body>
+</html>
